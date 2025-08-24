@@ -2,33 +2,40 @@ package com.example.BackPruebaTecnica.Modelos;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 @Entity
-@Table (name = "usuario")
+@Table(name = "usuario")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer idUsuario;
+    @Column(name = "nombre_usuario")
     private String nombreUsuario;
+    @Column(name = "apellido_usuario")
     private String apellidoUsuario;
+    @Column(name = "correo_usuario")
     private String correoUsuario;
+    @Column(name = "telefono_usuario")
     private String telefonoUsuario;
+    @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
+    @Column(name = "direccion_usuario")
     private String direccionUsuario;
-    private String numeroDocumento;//uso string para que si el usuario coloca los puntos funcione. luego hare una validacion desde el front para evitar errores
-
-    //Claves foraneas
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "numero_documento")
+    private String numeroDocumento;
+    @ManyToOne
     @JoinColumn(name = "id_tipoIdentificacion")
     private Tipo_Identificacion tipoIdentificacion;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_marca")
     private Marca marca;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_pais")
     private Pais pais;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_departamento")
     private Departamento departamento;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_ciudad")
     private Ciudad ciudad;
 
