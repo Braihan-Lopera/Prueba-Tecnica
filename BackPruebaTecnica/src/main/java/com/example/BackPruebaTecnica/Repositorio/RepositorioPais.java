@@ -1,4 +1,7 @@
 package com.example.BackPruebaTecnica.Repositorio;
 
-public interface RepositorioPais {
+import com.example.BackPruebaTecnica.Modelos.Pais;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RepositorioPais extends JpaRepository <Pais, Integer> {
 }

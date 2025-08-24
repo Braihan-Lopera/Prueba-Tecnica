@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class Pais {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id_pais")
     private Integer idPais;
     private String pais;
 

@@ -7,11 +7,12 @@ import jakarta.persistence.*;
 public class Departamento {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (name = "id_departamento")
     private Integer idDepartamento;
     private String departamento;
 
     //claves foraneas
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name ="id_pais")
     private Pais pais;
 

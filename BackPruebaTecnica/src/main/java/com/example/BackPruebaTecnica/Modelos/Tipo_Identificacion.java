@@ -3,12 +3,15 @@ package com.example.BackPruebaTecnica.Modelos;
 import jakarta.persistence.*;
 
 @Entity
-@Table (name = "Tipo_identificacion")
+@Table(name = "tipo_identificacion")
 public class Tipo_Identificacion {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id_tipoIdentificacion")
     private Integer idTipoIdentificacion;
+    @Column(name = "tipo_documento")
     private String tipoDocumento;//Cedula, tarjeta identidad, cedula extranjeta, pasaporte
+    @Column(name = "abreviatura")
     private String abreviatura; //cc,ce,ti,pa
 
     public Tipo_Identificacion(){}

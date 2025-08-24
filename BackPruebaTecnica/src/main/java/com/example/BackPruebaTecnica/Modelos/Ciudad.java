@@ -6,10 +6,11 @@ import jakarta.persistence.*;
 public class Ciudad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id_ciudad")
     private Integer idCiudad;
     private String ciudad;
     //claves foraneas
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_departamento")
     private Departamento departamento;
 
