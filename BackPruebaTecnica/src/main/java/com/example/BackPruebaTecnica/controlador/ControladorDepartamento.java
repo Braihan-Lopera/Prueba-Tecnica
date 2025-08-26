@@ -15,10 +15,14 @@ public class ControladorDepartamento {
 
     @Autowired
     private ServicioDepartamento servicioDepartamento;
+
     @GetMapping("/listar")
     public ResponseEntity<List<Departamento>> listarDepartamentos() {
-        List<Departamento> departamentos = servicioDepartamento.listarDepartamentos();
-        return ResponseEntity.ok(departamentos);
+        return ResponseEntity.ok(servicioDepartamento.listarDepartamentos());
+    }
+    @GetMapping("/listar/{idPais}")
+    public ResponseEntity<List<Departamento>> listarPorPais(@PathVariable int idPais) {
+        return ResponseEntity.ok(servicioDepartamento.listarPorPais(idPais));
     }
 }
 

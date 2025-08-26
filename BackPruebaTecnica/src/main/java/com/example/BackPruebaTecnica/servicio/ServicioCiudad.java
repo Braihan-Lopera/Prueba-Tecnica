@@ -11,12 +11,10 @@ import java.util.List;
 public class ServicioCiudad {
 @Autowired
     RepositorioCiudad repositorioCiudad;
-    public List <Ciudad> listarCiudades(Ciudad datosCiudad)throws Exception {
-        try {
-            return repositorioCiudad.findAll();
-
-        } catch (Exception error) {
-            throw new Exception(error.getMessage());
-        }
+    public List <Ciudad> listarCiudades(){
+        return repositorioCiudad.findAll();
+    }
+    public List<Ciudad>listarPorDepartamento(int idDepartamento){
+        return repositorioCiudad.findByDepartamento_IdDepartamento(idDepartamento);
     }
 }

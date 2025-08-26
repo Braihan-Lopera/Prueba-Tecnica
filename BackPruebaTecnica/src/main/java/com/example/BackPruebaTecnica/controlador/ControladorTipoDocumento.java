@@ -11,16 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/Tipo_documento")
+@RequestMapping("/tipo-identificacion")
 public class ControladorTipoDocumento {
     @Autowired
     ServicioTipoDocumento servicioTipoDocumento;
-    @GetMapping("/Listar")
+
+    @GetMapping("/listar")
     public ResponseEntity<?>listarTipoDocumento(){
-        try{
-            return ResponseEntity.ok(servicioTipoDocumento.listarTipoDocumento());
-        }catch (Exception error){
-            return ResponseEntity.badRequest().body(error.getMessage());
-        }
+        return ResponseEntity.ok(servicioTipoDocumento.listarTipoDocumento());
     }
 }
