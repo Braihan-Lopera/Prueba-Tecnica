@@ -14,5 +14,9 @@ public class ServicioDepartamento {
     public List<Departamento> listarDepartamentos() {
         return repositorioDepartamento.findAll();
     }
+
+    public List<Departamento>listarPorPais(int idPais){
+        return repositorioDepartamento.findByPais_IdPais(idPais);
+    }
 }
 

@@ -1,0 +1,164 @@
+.marca-form-wrapper {
+  text-align: center;
+  padding: 40px;
+  background: #e0e0e0;
+  min-height: 100vh;
+}
+
+.marca-form-wrapper h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ==== SELECT PRINCIPAL ==== */
+.marca-form-wrapper select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.marca-form-wrapper select:hover {
+  border-color: #0095f6;
+  box-shadow: 0px 4px 10px rgba(0, 149, 246, 0.2);
+}
+
+.marca-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
+  gap: 50px;
+  transition: all 0.3s ease;
+}
+
+/* ==== DIV DE MARCA ==== */
+.brand-preview {
+  width: 280px;
+  height: 700px;  /* más largo */
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.brand-preview:hover {
+  transform: scale(1.05);
+}
+
+.brand-preview img {
+  max-width: 180px;
+  max-height: 150px;
+  margin-bottom: 20px;
+}
+
+/* ==== FORMULARIO ==== */
+.formulario {
+  background: white;
+  padding: 50px;
+  border-radius: 14px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  width: 750px;           /* un poco más ancho */
+  min-height: 600px;      /* más alto para inputs */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Inputs y selects */
+.formulario input,
+.formulario select {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  background: #f9f9f9;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  
+}
+
+/* Hover */
+.formulario input:hover,
+.formulario select:hover {
+  background: #ffffff;
+  border-color: #bbb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Focus */
+.formulario input:focus,
+.formulario select:focus {
+  border-color: #0095f6;
+  box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.25);
+  outline: none;
+  background: #fff;
+}
+
+/* ==== BOTÓN ==== */
+.formulario button {
+  background: linear-gradient(135deg, #0095f6, #0084ff);
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 17px;
+  width: 100%;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 149, 246, 0.3);
+}
+
+.formulario button:hover {
+  background: linear-gradient(135deg, #007ed6, #093e72);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+}
+
+.formulario button:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* ==== GRILLAS ==== */
+.grid-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; /* 👈 separa las columnas */
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px; /* 👈 separa las 3 columnas */
+}
+
+.formulario input,
+.formulario select {
+  width: 100%;   /* ahora sí ocupa su columna correctamente */
+  box-sizing: border-box; /* 👈 evita que se desborde */
+}
+
