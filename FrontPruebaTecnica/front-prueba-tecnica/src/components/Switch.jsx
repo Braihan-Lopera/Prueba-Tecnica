@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 
+//switch de la parte superior izquierda. fue sacado de UIVERSE.
+
+
 const Switch = () => {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -16,9 +19,11 @@ const Switch = () => {
     <StyledWrapper>
     <div className="containerSwitch">
       <label className="switch">
-        <input id="input" type="checkbox" defaultChecked="darkTheme" 
-        checked={darkMode}
-        onChange={() => setDarkMode(!darkMode)}
+        <input 
+          id="input" 
+          type="checkbox"
+          checked={darkMode}
+          onChange={() => setDarkMode(!darkMode)}
         />
         <div className="slider round">
           <div className="sun-moon">

@@ -9,11 +9,11 @@ import java.util.List;
 
 @Repository
 public interface RepositorioUsuario extends JpaRepository<Usuario, Integer> {
-
+    //spring busca el correo del usuario e ignora las mayusculas
     boolean existsByCorreoUsuarioIgnoreCase(String correoUsuario);
-
+    //lo mismo con el dcomento
     boolean existsByNumeroDocumentoAndTipoIdentificacion_IdTipoIdentificacion(String numeroDocumento, Integer idTipoIdentificacion);
-
+    // y asi de ahi para abajo
     List<Usuario> findByCorreoUsuarioContainingIgnoreCase(String correoUsuario);
 
     List<Usuario> findByNombreUsuarioContainingIgnoreCase(String nombreUsuario);

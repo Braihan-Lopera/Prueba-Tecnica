@@ -1,11 +1,12 @@
-.marca-form-wrapper {
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.form-marca {
   text-align: center;
   padding: 40px;
   background: #e0e0e0;
   min-height: 100vh;
 }
 
-.marca-form-wrapper h2 {
+.form-marca h2 {
   margin-bottom: 20px;
   font-size: 28px;
   font-weight: bold;
@@ -13,7 +14,7 @@
 }
 
 /* ==== SELECT PRINCIPAL ==== */
-.marca-form-wrapper select {
+.form-marca select {
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -25,12 +26,13 @@
   transition: all 0.2s ease;
 }
 
-.marca-form-wrapper select:hover {
+.form-marca select:hover {
   border-color: #0095f6;
   box-shadow: 0px 4px 10px rgba(0, 149, 246, 0.2);
 }
 
-.marca-form-container {
+/* ===== CONTENEDOR DE FORM Y PANEL ===== */
+.contenedor-marca {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -39,8 +41,8 @@
   transition: all 0.3s ease;
 }
 
-/* ==== DIV DE MARCA ==== */
-.brand-preview {
+/* ==== PANEL DE MARCA ==== */
+.logo-marca {
   width: 280px;
   height: 700px;  
   border-radius: 14px;
@@ -54,18 +56,18 @@
   transition: transform 0.3s ease;
 }
 
-.brand-preview:hover {
+.logo-marca:hover {
   transform: scale(1.05);
 }
 
-.brand-preview img {
+.logo-marca img {
   max-width: 180px;
   max-height: 150px;
   margin-bottom: 20px;
 }
 
 /* ==== FORMULARIO ==== */
-.formulario {
+.formulario-marca {
   background: white;
   padding: 50px;
   border-radius: 14px;
@@ -80,8 +82,8 @@
 }
 
 /* Inputs y selects */
-.formulario input,
-.formulario select {
+.formulario-marca input,
+.formulario-marca select {
   width: 100%;
   padding: 14px 16px;
   border-radius: 8px;
@@ -90,20 +92,19 @@
   transition: all 0.2s ease;
   background: #f9f9f9;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-  
 }
 
 /* Hover */
-.formulario input:hover,
-.formulario select:hover {
+.formulario-marca input:hover,
+.formulario-marca select:hover {
   background: #ffffff;
   border-color: #bbb;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 /* Focus */
-.formulario input:focus,
-.formulario select:focus {
+.formulario-marca input:focus,
+.formulario-marca select:focus {
   border-color: #0095f6;
   box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.25);
   outline: none;
@@ -111,7 +112,7 @@
 }
 
 /* ==== BOTÓN ==== */
-.formulario button {
+.btn-registrar {
   background: linear-gradient(135deg, #0095f6, #0084ff);
   color: white;
   font-weight: bold;
@@ -126,109 +127,149 @@
   box-shadow: 0 4px 12px rgba(0, 149, 246, 0.3);
 }
 
-.formulario button:hover {
+.btn-registrar:hover {
   background: linear-gradient(135deg, #007ed6, #093e72);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
 }
 
-.formulario button:active {
+.btn-registrar:active {
   transform: scale(0.97);
   box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
 }
 
-
-.grid-1 {
+/* ==== FILAS ==== */
+.fila-1 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 }
 
-.grid-2 {
+.fila-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
-.grid-3 {
+.fila-2 input{
+  width: 330px;
+}
+
+.fila-3 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
 }
 
-.formulario input,
-.formulario select {
+.input-direccion {
   width: 100%;
   box-sizing: border-box;
 }
 
 /* ====== MODO OSCURO ====== */
-body.dark-mode .marca-form-wrapper {
+body.dark-mode .form-marca {
   background: #1e1e1e;
   color: #f0f0f0;
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-body.dark-mode .marca-form-wrapper h2 {
+body.dark-mode .form-marca h2 {
   color: #f5f5f5;
 }
 
-body.dark-mode .formulario {
+body.dark-mode .formulario-marca {
   background: #2b2b2b;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-body.dark-mode .formulario input,
-body.dark-mode .formulario select {
+body.dark-mode .formulario-marca input,
+body.dark-mode .formulario-marca select {
   background: #3a3a3a;
   color: #f0f0f0;
   border: 1px solid #555;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
 }
 
-body.dark-mode .formulario input::placeholder,
-body.dark-mode .formulario select {
+body.dark-mode .formulario-marca input::placeholder,
+body.dark-mode .formulario-marca select {
   color: #ccc;
 }
 
-body.dark-mode .formulario input:hover,
-body.dark-mode .formulario select:hover {
+body.dark-mode .formulario-marca input:hover,
+body.dark-mode .formulario-marca select:hover {
   background: #444;
   border-color: #777;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-body.dark-mode .formulario input:focus,
-body.dark-mode .formulario select:focus {
+body.dark-mode .formulario-marca input:focus,
+body.dark-mode .formulario-marca select:focus {
   border-color: #0095f6;
   box-shadow: 0 0 0 3px rgba(0, 149, 246, 0.4);
   background: #555;
   outline: none;
 }
 
-/* Botón en modo oscuro */
-body.dark-mode .formulario button {
+body.dark-mode .btn-registrar {
   background: linear-gradient(135deg, #007ed6, #0056a6);
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5);
-  transition: all 0.3s ease;
 }
 
-body.dark-mode .formulario button:hover {
+body.dark-mode .btn-registrar:hover {
   background: linear-gradient(135deg, #0066b2, #003e73);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 123, 255, 0.6);
 }
 
-body.dark-mode .formulario button:active {
+body.dark-mode .btn-registrar:active {
   transform: scale(0.97);
   box-shadow: 0 3px 8px rgba(0, 123, 255, 0.4);
 }
 
-
 body.dark-mode .containerSwitch{
   background: #1e1e1e;
   transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .contenedor-marca {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .logo-marca {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+  }
+
+  .formulario-marca {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-marca {
+    padding: 20px;
+  }
+
+  .form-marca h2 {
+    font-size: 22px;
+  }
+
+  .formulario-marca {
+    padding: 20px;
+    width: 100%;
+  }
+
+  .fila-2, .fila-3 {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .btn-registrar {
+    font-size: 15px;
+    padding: 14px;
+  }
 }
 

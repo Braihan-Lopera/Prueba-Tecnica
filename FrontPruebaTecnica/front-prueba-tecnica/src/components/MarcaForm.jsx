@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
+import CampoTexto from "./CampoTexto";
+import ListaOpciones from "./ListaOpciones";
+import {obtenerTiposDocumento, obtenerPaises,obtenerDepartamentos,obtenerCiudades} from "../services/servicioUsuario";
+import { registrarUsuario } from "../services/servicioUsuario";
+import { esUnCorreoValido, esUnNombreValido } from "../services/validaciones";
 import "../styles/MarcaForm.css";
 
+//la informacion de los paneles
 const brands = [
   { id: 1, name: "Americanino", img: "/assets/americaninoLogo.png", color: "#064998" },
   { id: 2, name: "American Eagle", img: "/assets/americanEagleLogo.webp", color: "#ffffffff" },
@@ -11,6 +17,7 @@ const brands = [
 ];
 
 const MarcaForm = () => {
+  //colocar la imagen en base al id del brand
   const [selectedBrand, setSelectedBrand] = useState(null);
   const handleBrandChange = (e) => {
     const brandId = parseInt(e.target.value);
@@ -18,6 +25,7 @@ const MarcaForm = () => {
     setSelectedBrand(brand);
   };
 
+  //variables y sus useStates para capturar los datos
   const [nomre, setNombre] = useState("")
   const [apellido, setApellido] = useState("")
   const [correo, setCorreo] = useState("")
@@ -25,68 +33,78 @@ const MarcaForm = () => {
   const [fechaNacimiento, setFechaNacimiento] = useState("");
   const [numeroDoc, setNumeroDoc] = useState("")
   const [direccion, setDireccion] = useState("")
-
   const [tipoDocumento, setTipoDocumento] = useState([])
   const [tipoSeleccionado, setTipoSeleccionado] = useState("")
-
-  useEffect(() => {
-    fetch("http://localhost:8080/tipo-identificacion/listar")
-      .then((res) => res.json())
-      .then((data) => setTipoDocumento(data))
-      .catch((err) => console.log("Error al cargar tipos: ", err))
-  }, []);
-
   const [paises, setPaises] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:8080/paises/listar")
-      .then((res) => res.json())
-      .then((data) => setPaises(data))
-      .catch((err) => console.log("Error al cargar países: ", err));
-  }, []);
-
   const [departamentos, setDepartamentos] = useState([])
   const [departamentoSeleccionado, setDepartamentoSeleccionado] = useState("")
+  const [ciudades, setCiudades] = useState([]);
+  const [ciudadSeleccionada, setCiudadSeleccionada] = useState("");
 
+  //traer tipo documento
+  useEffect(() => {
+    obtenerTiposDocumento()
+      .then((data) => {
+        console.log("Tipos de documento recibidos:", data);
+        setTipoDocumento(data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+
+  //traer paises
+  useEffect(() => {
+    obtenerPaises()
+      .then(setPaises)
+      .catch((err) => console.error(err));
+  }, []);
+  //traer departamentos en base al id del pais
   useEffect(() => {
     if (paisSeleccionado) {
-      fetch(`http://localhost:8080/departamento/listar/${paisSeleccionado}`)
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Error en la respuesta del servidor");
-          }
-          return res.json();
-        })
-        .then((data) => setDepartamentos(data))
-        .catch((err) => console.log("Error al cargar departamentos: ", err));
+      obtenerDepartamentos(paisSeleccionado)
+        .then(setDepartamentos)
+        .catch((err) => console.error(err));
     } else {
       setDepartamentos([]);
     }
   }, [paisSeleccionado]);
 
-  const [ciudades, setCiudades] = useState([]);
-  const [ciudadSeleccionada, setCiudadSeleccionada] = useState("");
-
-  
+  //traer ciudades en base al id del departamento
   useEffect(() => {
     if (departamentoSeleccionado) {
-      fetch(`http://localhost:8080/ciudad/listar/${departamentoSeleccionado}`)
-        .then((res) => {
-          if (!res.ok) throw new Error("Error en la respuesta del servidor");
-          return res.json();
-        })
-        .then((data) => setCiudades(data))
-        .catch((err) => console.error("Error al cargar ciudades:", err));
+      obtenerCiudades(departamentoSeleccionado)
+        .then(setCiudades)
+        .catch((err) => console.error(err));
     } else {
       setCiudades([]);
     }
   }, [departamentoSeleccionado]);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    
+    
+    //verificar correo y nombre
+    if (!esCorreoValido(correo)) {
+    return Swal.fire({
+      icon: "error",
+      text: "El correo debe tener un @ y al menos 4 caracteres después"
+    });
+  }
+
+  if (!esTelefonoBasico(numero)) {
+    return Swal.fire({
+      icon: "error",
+      text: "El número de teléfono no es válido"
+    });
+  }
     console.log("Registrado en marca:", selectedBrand);
 
+
+    //crear el objeto para enviar al back
     const usuario = {
       nombreUsuario: nomre,
       apellidoUsuario: apellido,
@@ -101,170 +119,131 @@ const MarcaForm = () => {
       departamento: { idDepartamento: departamentoSeleccionado },
       ciudad: { idCiudad: ciudadSeleccionada }
     };
-
     console.log("Objeto usuario listo para enviar:", usuario);
 
-    fetch("http://localhost:8080/usuarios/guardar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(usuario),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Error en el registro");
-        return res.json()
-      })
+
+    //llamo a la funcion de registrar el usuario
+    registrarUsuario(usuario)
       .then((data) => {
         console.log("Usuario registrado con éxito:", data);
+        //alerta
         Swal.fire({
-            title: "Usuario registrado con exito",
-            icon: "success",
-            draggable: true
-          });
+          title: "Usuario registrado con éxito",
+          icon: "success",
+          draggable: true
+        });
       })
-      .catch((err) => console.error("Error al registrar usuario:", err));
-  };
+      .catch((err) => {
+        console.error("Error al registrar usuario:", err);
+        //alerta
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo salió mal, por favor revisa bien la información"
+        });
+      });
 
+    }
+
+    //formulario
   return (
-    <div className="marca-form-wrapper">
-      <h2>Selecciona una marca para el programa de fidelización</h2>
-
-      {/* Select */}
-      <select onChange={handleBrandChange} defaultValue="">
-        <option value="" disabled>
-          -- Selecciona --
+  <div className="form-marca">
+    <h2>Selecciona una marca para el programa de fidelización</h2>
+    <select onChange={handleBrandChange} defaultValue="">
+      <option value="" disabled>
+        -- Selecciona --
+      </option>
+      {brands.map((brand) => (
+        <option key={brand.id} value={brand.id}>
+          {brand.name}
         </option>
-        {brands.map((brand) => (
-          <option key={brand.id} value={brand.id}>
-            {brand.name}
-          </option>
-        ))}
-      </select>
+      ))}
+    </select>
 
-      
-      {selectedBrand && (
-        <div className="marca-form-container">
-          <div
-            className="brand-preview"
-            style={{ backgroundColor: selectedBrand.color }}
-          >
-            <img src={selectedBrand.img} alt={selectedBrand.name} />
+    {selectedBrand && (
+      <div className="contenedor-marca">
+        <div
+          className="logo-marca"
+          style={{ backgroundColor: selectedBrand.color }}
+        >
+          <img src={selectedBrand.img} alt={selectedBrand.name} />
+        </div>
+
+        <form className="formulario-marca" onSubmit={handleSubmit}>
+
+          <div className="fila-2">
+            <CampoTexto placeholder="Nombre" valor={nomre} alCambiar={(e) => setNombre(e.target.value)} />
+            <CampoTexto placeholder="Apellido" valor={apellido} alCambiar={(e) => setApellido(e.target.value)} />
           </div>
 
-          
-          <form className="formulario" onSubmit={handleSubmit}>
-            <div className="grid-2">
-              <input type="text" placeholder="Nombre" required
-                value={nomre}
-                onChange={(e) => setNombre(e.target.value)}
-              />
-              <input type="text" placeholder="Apellido" required
-                value={apellido}
-                onChange={(e) => setApellido(e.target.value)}
-              />
-            </div>
-            <div className="grid-2">
-              <input type="email" placeholder="Correo" required
-                value={correo}
-                onChange={(e) => setCorreo(e.target.value)} />
-              <input type="tel" placeholder="Número de celular" required
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-              />
-            </div>
-            <div className="grid-2">
-              <label>
-                <select
-                  value={tipoSeleccionado}
-                  onChange={(e) => setTipoSeleccionado(Number(e.target.value))}
-                  required
-                >
-                  <option value="">Seleccione tipo de documento</option>
-                  {tipoDocumento.map((t) => (
-                    <option key={t.idTipoIdentificacion} value={t.idTipoIdentificacion}>
-                      {t.tipo_documento} ({t.abreviatura})
-                    </option>
-                  ))}
-                </select>
+          <div className="fila-2">
+            <CampoTexto tipo="email" placeholder="Correo" valor={correo} alCambiar={(e) => setCorreo(e.target.value)}/>
+            <CampoTexto tipo="text" placeholder="Número de teléfono" valor={numero} alCambiar={(e) => setNumero(e.target.value)} />
+          </div>
 
-              </label>
-              <input type="text" placeholder="Número de documento" required
-                value={numeroDoc}
-                onChange={(e) => setNumeroDoc(e.target.value)} />
-
-            </div>
-            <input
-              type="date"
-              required
-              value={fechaNacimiento}
-              onChange={(e) => setFechaNacimiento(e.target.value)}
+          <div className="fila-2">
+            <ListaOpciones
+              valor={tipoSeleccionado}
+              alCambiar={(e) => setTipoSeleccionado(Number(e.target.value))}
+              opciones={tipoDocumento}
+              clave="idTipoIdentificacion"
+              mostrar="tipoDocumento"
+              placeholder="Seleccione tipo de documento"
             />
+            <CampoTexto type="text" placeholder="Número de documento (Sin puntos ni guiones)" valor={numeroDoc} alCambiar={(e)=> setNumeroDoc(e.target.value)} />
+          </div>
 
+          <input
+            type="date"
+            required
+            value={fechaNacimiento}
+            onChange={(e) => setFechaNacimiento(e.target.value)}
+          />
 
-            <div className="grid-3">
+          <div className="fila-3">
+            <ListaOpciones
+              valor={paisSeleccionado}
+              alCambiar={(e)=> setPaisSeleccionado(e.target.value)}
+              opciones={paises}
+              clave="idPais"
+              mostrar="pais"
+              placeholder="Seleccione el país"
+            />
+            <ListaOpciones
+              valor={departamentoSeleccionado}
+              alCambiar={(e) => setDepartamentoSeleccionado(Number(e.target.value))}
+              opciones={departamentos}
+              clave="idDepartamento"
+              mostrar="departamento"
+              placeholder="Seleccione departamento"
+            />
+            <ListaOpciones
+              valor={ciudadSeleccionada}
+              alCambiar={(e) => setCiudadSeleccionada(Number(e.target.value))}
+              opciones={ciudades}
+              clave="idCiudad"
+              mostrar="ciudad"
+              placeholder="Seleccione ciudad"
+            />
+          </div>
 
-              <select
-                value={paisSeleccionado}
-                onChange={(e) => setPaisSeleccionado(Number(e.target.value))}
-                required
-              >
-                <option value="">Seleccione país</option>
-                {paises.map((p) => (
-                  <option key={p.idPais} value={p.idPais}>
-                    {p.pais}
-                  </option>
-                ))}
-              </select>
+          <div className="fila-1">
+            <label>
+              <input required type="text" placeholder="Dirección" className="input-direccion"
+                value={direccion}
+                onChange={(e) => setDireccion(e.target.value)}
+              />
+            </label>
+          </div>
 
-
-              <select
-                required
-                value={departamentoSeleccionado}
-                onChange={(e) => setDepartamentoSeleccionado(Number(e.target.value))}
-              >
-                <option value="">Seleccione departamento</option>
-                {departamentos.map((d) => (
-                  <option key={d.idDepartamento} value={d.idDepartamento}>
-                    {d.departamento}
-                  </option>
-                ))}
-              </select>
-
-
-              <select
-                required
-                value={ciudadSeleccionada}
-                onChange={(e) => setCiudadSeleccionada(Number(e.target.value))}
-              >
-                <option value="">Seleccione ciudad</option>
-                {ciudades.map((c) => (
-                  <option key={c.idCiudad} value={c.idCiudad}>
-                    {c.ciudad}
-                  </option>
-                ))}
-              </select>
-
-            </div>
-            <div className="grid-1">
-              <label>
-                <input required type="text" placeholder="Direccion" className="inputDireccion"
-                  value={direccion}
-                  onChange={(e) => setDireccion(e.target.value)}
-                />
-
-              </label>
-            </div>
-            <button type="submit">Registrar</button>
-
-
-          </form>
-        </div>
-      )}
-    </div>
-
-
-  );
+          <button type="submit" className="btn-registrar">Registrar</button>
+        </form>
+      </div>
+    )}
+  </div>
+);
 };
+
+
 
 export default MarcaForm;
