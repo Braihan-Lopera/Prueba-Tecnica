@@ -23,7 +23,7 @@ La aplicación permite **registrar y consultar usuarios** desde una interfaz web
   - `ServicioUsuario`: valida unicidad de correo y documento antes de guardar, además expone métodos de búsqueda.  
   - `ControladorUsuario`: endpoints para registrar usuarios y consultarlos por distintos criterios.  
   - Configuración BD: `BackPruebaTecnica/src/main/resources/application.properties`.
-  - en el proyecto se consume la base de datos para las listas desde el back.
+  - en el proyecto se consume la base de datos para las listas de `tipo de documento`, `pais`, `departamento`, `ciudad`. 
 
 - **Frontend (React + Vite)**  
   - Ubicación: `FrontPruebaTecnica/front-prueba-tecnica`.  
