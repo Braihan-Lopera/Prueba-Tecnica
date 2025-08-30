@@ -6,7 +6,7 @@ import { registrarUsuario } from "../services/servicioUsuario";
 import { esUnCorreoValido, esUnNombreValido } from "../services/validaciones";
 import "../styles/MarcaForm.css";
 
-//la informacion de los paneles
+
 const brands = [
   { id: 1, name: "Americanino", img: "/assets/americaninoLogo.png", color: "#064998" },
   { id: 2, name: "American Eagle", img: "/assets/americanEagleLogo.webp", color: "#ffffffff" },
@@ -17,7 +17,7 @@ const brands = [
 ];
 
 const MarcaForm = () => {
-  //colocar la imagen en base al id del brand
+  
   const [selectedBrand, setSelectedBrand] = useState(null);
   const handleBrandChange = (e) => {
     const brandId = parseInt(e.target.value);
@@ -25,7 +25,7 @@ const MarcaForm = () => {
     setSelectedBrand(brand);
   };
 
-  //variables y sus useStates para capturar los datos
+  
   const [nomre, setNombre] = useState("")
   const [apellido, setApellido] = useState("")
   const [correo, setCorreo] = useState("")
@@ -42,24 +42,22 @@ const MarcaForm = () => {
   const [ciudades, setCiudades] = useState([]);
   const [ciudadSeleccionada, setCiudadSeleccionada] = useState("");
 
-  //traer tipo documento
+  
   useEffect(() => {
     obtenerTiposDocumento()
       .then((data) => {
-        console.log("Tipos de documento recibidos:", data);
         setTipoDocumento(data);
       })
       .catch((err) => console.error(err));
   }, []);
 
 
-  //traer paises
+  
   useEffect(() => {
     obtenerPaises()
       .then(setPaises)
       .catch((err) => console.error(err));
   }, []);
-  //traer departamentos en base al id del pais
   useEffect(() => {
     if (paisSeleccionado) {
       obtenerDepartamentos(paisSeleccionado)
@@ -70,7 +68,7 @@ const MarcaForm = () => {
     }
   }, [paisSeleccionado]);
 
-  //traer ciudades en base al id del departamento
+  
   useEffect(() => {
     if (departamentoSeleccionado) {
       obtenerCiudades(departamentoSeleccionado)
@@ -87,7 +85,7 @@ const MarcaForm = () => {
     
     
     
-    //verificar correo y nombre
+    
     if (!esCorreoValido(correo)) {
     return Swal.fire({
       icon: "error",
@@ -101,10 +99,9 @@ const MarcaForm = () => {
       text: "El número de teléfono no es válido"
     });
   }
-    console.log("Registrado en marca:", selectedBrand);
 
 
-    //crear el objeto para enviar al back
+    
     const usuario = {
       nombreUsuario: nomre,
       apellidoUsuario: apellido,
@@ -122,11 +119,11 @@ const MarcaForm = () => {
     console.log("Objeto usuario listo para enviar:", usuario);
 
 
-    //llamo a la funcion de registrar el usuario
+    
     registrarUsuario(usuario)
       .then((data) => {
         console.log("Usuario registrado con éxito:", data);
-        //alerta
+        
         Swal.fire({
           title: "Usuario registrado con éxito",
           icon: "success",
@@ -135,7 +132,7 @@ const MarcaForm = () => {
       })
       .catch((err) => {
         console.error("Error al registrar usuario:", err);
-        //alerta
+        
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -145,7 +142,7 @@ const MarcaForm = () => {
 
     }
 
-    //formulario
+    
   return (
   <div className="form-marca">
     <h2>Selecciona una marca para el programa de fidelización</h2>
