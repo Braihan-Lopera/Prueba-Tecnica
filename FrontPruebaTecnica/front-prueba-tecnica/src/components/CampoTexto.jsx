@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function CampoTexto({ tipo = "text", placeholder, valor, alCambiar, clase = "" }) {
+export default function CampoTexto({
+  tipo = "text",
+  placeholder,
+  valor,
+  alCambiar,
+  clase = "",
+}) {
   return (
     <input
       type={tipo}
@@ -12,5 +18,3 @@ export default function CampoTexto({ tipo = "text", placeholder, valor, alCambia
     />
   );
 }
-
-

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from 'styled-components';
-
-//switch de la parte superior izquierda. fue sacado de UIVERSE.
-
+import styled from "styled-components";
 
 const Switch = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -17,89 +14,89 @@ const Switch = () => {
 
   return (
     <StyledWrapper>
-    <div className="containerSwitch">
-      <label className="switch">
-        <input 
-          id="input" 
-          type="checkbox"
-          checked={darkMode}
-          onChange={() => setDarkMode(!darkMode)}
-        />
-        <div className="slider round">
-          <div className="sun-moon">
-            <svg id="moon-dot-1" className="moon-dot" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="moon-dot-2" className="moon-dot" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="moon-dot-3" className="moon-dot" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="light-ray-1" className="light-ray" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="light-ray-2" className="light-ray" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="light-ray-3" className="light-ray" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="cloud-1" className="cloud-dark" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="cloud-2" className="cloud-dark" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="cloud-3" className="cloud-dark" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="cloud-4" className="cloud-light" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="cloud-5" className="cloud-light" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
-            <svg id="cloud-6" className="cloud-light" viewBox="0 0 100 100">
-              <circle cx={50} cy={50} r={50} />
-            </svg>
+      <div className="containerSwitch">
+        <label className="switch">
+          <input
+            id="input"
+            type="checkbox"
+            checked={darkMode}
+            onChange={() => setDarkMode(!darkMode)}
+          />
+          <div className="slider round">
+            <div className="sun-moon">
+              <svg id="moon-dot-1" className="moon-dot" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="moon-dot-2" className="moon-dot" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="moon-dot-3" className="moon-dot" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="light-ray-1" className="light-ray" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="light-ray-2" className="light-ray" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="light-ray-3" className="light-ray" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="cloud-1" className="cloud-dark" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="cloud-2" className="cloud-dark" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="cloud-3" className="cloud-dark" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="cloud-4" className="cloud-light" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="cloud-5" className="cloud-light" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+              <svg id="cloud-6" className="cloud-light" viewBox="0 0 100 100">
+                <circle cx={50} cy={50} r={50} />
+              </svg>
+            </div>
+            <div className="stars">
+              <svg id="star-1" className="star" viewBox="0 0 20 20">
+                <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
+              </svg>
+              <svg id="star-2" className="star" viewBox="0 0 20 20">
+                <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
+              </svg>
+              <svg id="star-3" className="star" viewBox="0 0 20 20">
+                <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
+              </svg>
+              <svg id="star-4" className="star" viewBox="0 0 20 20">
+                <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
+              </svg>
+            </div>
           </div>
-          <div className="stars">
-            <svg id="star-1" className="star" viewBox="0 0 20 20">
-              <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
-            </svg>
-            <svg id="star-2" className="star" viewBox="0 0 20 20">
-              <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
-            </svg>
-            <svg id="star-3" className="star" viewBox="0 0 20 20">
-              <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
-            </svg>
-            <svg id="star-4" className="star" viewBox="0 0 20 20">
-              <path d="M 0 10 C 10 10,10 10 ,0 10 C 10 10 , 10 10 , 10 20 C 10 10 , 10 10 , 20 10 C 10 10 , 10 10 , 10 0 C 10 10,10 10 ,0 10 Z" />
-            </svg>
-          </div>
-        </div>
-      </label>
+        </label>
       </div>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
-    .containerSwitch{
-    background:#e0e0e0;
-    }    
+  .containerSwitch {
+    background: #e0e0e0;
+  }
 
-.root{
-    margin:0;
-    backgroudn-color:#e0e0e0;
-    }
+  .root {
+    margin: 0;
+    backgroudn-color: #e0e0e0;
+  }
   .switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
-    margin:10px;
+    margin: 10px;
   }
 
   .switch #input {
@@ -366,7 +363,7 @@ const StyledWrapper = styled.div`
     100% {
       transform: scale(1);
     }
-  }`;
+  }
+`;
 
 export default Switch;
-

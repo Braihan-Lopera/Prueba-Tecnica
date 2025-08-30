@@ -1,4 +1,3 @@
-
 export function esUnCorreoValido(correo) {
   const regex = /^[^@]+@.{4,}$/;
   return regex.test(correo);

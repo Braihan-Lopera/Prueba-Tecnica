@@ -1,6 +1,14 @@
 import React from "react";
 
-function ListaOpciones({ valor, alCambiar, opciones, clave, mostrar, placeholder, clase = "" }) {
+function ListaOpciones({
+  valor,
+  alCambiar,
+  opciones,
+  clave,
+  mostrar,
+  placeholder,
+  clase = "",
+}) {
   return (
     <select value={valor} onChange={alCambiar} required className={clase}>
       <option value="">{placeholder}</option>
@@ -13,4 +21,4 @@ function ListaOpciones({ valor, alCambiar, opciones, clave, mostrar, placeholder
   );
 }
 
-export default  ListaOpciones;
+export default ListaOpciones;

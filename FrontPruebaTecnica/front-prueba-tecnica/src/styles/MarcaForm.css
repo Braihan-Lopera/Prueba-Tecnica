@@ -1,4 +1,3 @@
-/* ===== CONTENEDOR PRINCIPAL ===== */
 .form-marca {
   text-align: center;
   padding: 40px;
@@ -13,7 +12,6 @@
   color: #333;
 }
 
-/* ==== SELECT PRINCIPAL ==== */
 .form-marca select {
   padding: 10px 14px;
   border-radius: 8px;
@@ -31,7 +29,6 @@
   box-shadow: 0px 4px 10px rgba(0, 149, 246, 0.2);
 }
 
-/* ===== CONTENEDOR DE FORM Y PANEL ===== */
 .contenedor-marca {
   display: flex;
   justify-content: center;
@@ -41,10 +38,9 @@
   transition: all 0.3s ease;
 }
 
-/* ==== PANEL DE MARCA ==== */
 .logo-marca {
   width: 280px;
-  height: 700px;  
+  height: 700px;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -66,14 +62,13 @@
   margin-bottom: 20px;
 }
 
-/* ==== FORMULARIO ==== */
 .formulario-marca {
   background: white;
   padding: 50px;
   border-radius: 14px;
   box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
-  width: 750px;           
-  min-height: 600px;      
+  width: 750px;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -81,7 +76,6 @@
   transition: all 0.3s ease;
 }
 
-/* Inputs y selects */
 .formulario-marca input,
 .formulario-marca select {
   width: 100%;
@@ -94,7 +88,6 @@
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Hover */
 .formulario-marca input:hover,
 .formulario-marca select:hover {
   background: #ffffff;
@@ -102,7 +95,6 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Focus */
 .formulario-marca input:focus,
 .formulario-marca select:focus {
   border-color: #0095f6;
@@ -111,7 +103,6 @@
   background: #fff;
 }
 
-/* ==== BOTÓN ==== */
 .btn-registrar {
   background: linear-gradient(135deg, #0095f6, #0084ff);
   color: white;
@@ -138,7 +129,6 @@
   box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
 }
 
-/* ==== FILAS ==== */
 .fila-1 {
   display: grid;
   grid-template-columns: 1fr;
@@ -151,7 +141,7 @@
   gap: 20px;
 }
 
-.fila-2 input{
+.fila-2 input {
   width: 330px;
 }
 
@@ -166,7 +156,6 @@
   box-sizing: border-box;
 }
 
-/* ====== MODO OSCURO ====== */
 body.dark-mode .form-marca {
   background: #1e1e1e;
   color: #f0f0f0;
@@ -224,12 +213,11 @@ body.dark-mode .btn-registrar:active {
   box-shadow: 0 3px 8px rgba(0, 123, 255, 0.4);
 }
 
-body.dark-mode .containerSwitch{
+body.dark-mode .containerSwitch {
   background: #1e1e1e;
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .contenedor-marca {
     flex-direction: column;
@@ -262,7 +250,8 @@ body.dark-mode .containerSwitch{
     width: 100%;
   }
 
-  .fila-2, .fila-3 {
+  .fila-2,
+  .fila-3 {
     grid-template-columns: 1fr;
     gap: 15px;
   }
@@ -272,4 +261,3 @@ body.dark-mode .containerSwitch{
     padding: 14px;
   }
 }
-
